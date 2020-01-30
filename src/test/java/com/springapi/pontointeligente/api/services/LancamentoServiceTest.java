@@ -17,7 +17,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -44,11 +43,11 @@ public class LancamentoServiceTest {
 		BDDMockito.given(this.lancamentoRepository.save(Mockito.any(Lancamento.class))).willReturn(new Lancamento());
 	}
 	
-	/*
-	 * @Test public void testBuscarLancamentoPorFuncionarioId() { Page<Lancamento>
-	 * lancamento = this.lancamentoService.buscarPorFuncionarioId(1L, new
-	 * PageRequest(0, 10)); }
-	 */
+	
+	@Test 
+	public void testBuscarLancamentoPorFuncionarioId() { 
+		Page<Lancamento> lancamento = this.lancamentoService.buscarPorFuncionarioId(1L, PageRequest.of(0, 10));
+	}
 	
 	@Test
 	public void testBuscarLancamentoPorId() {
