@@ -1,9 +1,10 @@
 package com.springapi.pontointeligente.api.entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.math.BigDecimal;	
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +17,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.Transient;
 
 import com.springapi.pontointeligente.api.enums.PerfilEnum;
 
@@ -95,6 +99,11 @@ public class Funcionario implements Serializable{
 	public BigDecimal getValorHora() {
 		return valorHora;
 	}
+	
+	/*
+	 * @Transient public Optional<BigDecimal> getValorHoraOpt() { return
+	 * Optional.ofNullable(valorHora); }
+	 */
 
 	public void setValorHora(BigDecimal valorHora) {
 		this.valorHora = valorHora;
@@ -104,6 +113,11 @@ public class Funcionario implements Serializable{
 	public Float getQtdHorasTrabalhoDia() {
 		return qtdHorasTrabalhoDia;
 	}
+	
+	/*
+	 * @Transient public Optional<Float> getQtdHorasTrabalhoDiaOpt() { return
+	 * Optional.ofNullable(qtdHorasTrabalhoDia); }
+	 */
 
 	public void setQtdHorasTrabalhoDia(Float qtdHorasTrabalhoDia) {
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
@@ -113,17 +127,23 @@ public class Funcionario implements Serializable{
 	public Float getQtdHorasAlmoco() {
 		return qtdHorasAlmoco;
 	}
+	
+	/*
+	 * @Transient public Optional<Float> getQtdHorasAlmocoOpt() { return
+	 * Optional.ofNullable(qtdHorasAlmoco); }
+	 */
+
 
 	public void setQtdHorasAlmoco(Float qtdHorasAlmoco) {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 
+	@Enumerated(EnumType.STRING)
+	@Column(name= "perfil", nullable = false)
 	public PerfilEnum getPerfil() {
 		return perfil;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(name= "perfil", nullable = false)
 	public void setPerfil(PerfilEnum perfil) {
 		this.perfil = perfil;
 	}
@@ -169,7 +189,8 @@ public class Funcionario implements Serializable{
 	public void preUpdate() {
 		dataAtualizacao = new Date();
 	}
-		
+	
+	@PrePersist
 	public void prePersist() {
 		final Date atual = new Date();
 		dataCriacao = atual;

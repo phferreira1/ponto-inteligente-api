@@ -16,7 +16,7 @@ import com.springapi.pontointeligente.api.entities.Lancamento;
 @Transactional(readOnly = true)
 @NamedQueries({ 
 		@NamedQuery(name = "LancamentoRepository.findByFuncionarioId",
-				query = "SELECT lanc FROM Lancamento lanc WHERE lanc.funcionarioiId = :funcionarioId")})
+				query = "SELECT lanc FROM Lancamento lanc WHERE lanc.funcionarioi.id = :funcionarioId")})
 public interface LancamentoRepository extends JpaRepository<Lancamento, Long> {
 	
 	List<Lancamento> findByFuncionarioId (@Param("FuncionarioId") Long funcionarioId);
