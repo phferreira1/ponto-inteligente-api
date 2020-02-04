@@ -16,6 +16,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 @Entity
 @Table(name = "empresa")
 public class Empresa implements Serializable{
@@ -47,6 +49,7 @@ public class Empresa implements Serializable{
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
+	@CNPJ
 	@Column(name= "cnpj", nullable = false)
 	public String getCnpj() {
 		return cnpj;

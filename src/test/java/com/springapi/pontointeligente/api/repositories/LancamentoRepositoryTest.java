@@ -22,7 +22,6 @@ import com.springapi.pontointeligente.api.entities.Funcionario;
 import com.springapi.pontointeligente.api.entities.Lancamento;
 import com.springapi.pontointeligente.api.enums.PerfilEnum;
 import com.springapi.pontointeligente.api.enums.TipoEnum;
-import com.springapi.pontointeligente.api.utils.PasswordUtils;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -83,7 +82,7 @@ public class LancamentoRepositoryTest {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Nome teste");
 		funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
-		funcionario.setSenha(PasswordUtils.gerarBCrypt("123456"));
+		funcionario.setSenha("123456");
 		funcionario.setCpf("12345678901");
 		funcionario.setEmail("teste@teste.com.br");
 		funcionario.setEmpresa(empresa);

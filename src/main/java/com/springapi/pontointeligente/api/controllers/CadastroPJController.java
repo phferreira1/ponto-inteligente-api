@@ -23,7 +23,6 @@ import com.springapi.pontointeligente.api.enums.PerfilEnum;
 import com.springapi.pontointeligente.api.response.Response;
 import com.springapi.pontointeligente.api.services.EmpresaService;
 import com.springapi.pontointeligente.api.services.FuncionarioService;
-import com.springapi.pontointeligente.api.utils.PasswordUtils;
 
 @RestController
 @RequestMapping("/api/cadastrar-pj")
@@ -118,7 +117,7 @@ public class CadastroPJController {
 		funcionario.setEmail(cadastroPJDto.getEmail());
 		funcionario.setCpf(cadastroPJDto.getCpf());
 		funcionario.setPerfil(PerfilEnum.ROLE_ADMIN);
-		funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
+		funcionario.setSenha(cadastroPJDto.getSenha());
 		
 		return funcionario;
 	}

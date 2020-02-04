@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.springapi.pontointeligente.api.entities.Empresa;
 import com.springapi.pontointeligente.api.entities.Funcionario;
 import com.springapi.pontointeligente.api.enums.PerfilEnum;
-import com.springapi.pontointeligente.api.utils.PasswordUtils;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -55,7 +54,7 @@ public class FuncionarioRepositoryTest {
 	public void testBuscarFuncionarioPorCpf() {
 		Funcionario funcionario = this.funcionarioRepository.findByCpf(CPF);
 		
-		assertEquals(CPF, funcionario.getCpf());
+		assertEquals(CPF, funcionario.getCpf().toString());
 	}
 	
 	@Test
@@ -73,7 +72,7 @@ public class FuncionarioRepositoryTest {
 	}
 	
 	@Test
-	public void testBuscarFuncionarioPorEmailOuCpfParaCpfInvalido() {
+	public void testBuscarFuncionarioPorEmailECpfParaCpfInvalido() {
 		Funcionario funcionario = this.funcionarioRepository.findByCpfOrEmail("23409834578", EMAIL);
 		
 		assertNotNull(funcionario);
@@ -83,7 +82,7 @@ public class FuncionarioRepositoryTest {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Nome teste");
 		funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
-		funcionario.setSenha(PasswordUtils.gerarBCrypt("123456"));
+		funcionario.setSenha("123456");
 		funcionario.setCpf("12345678901");
 		funcionario.setEmail("teste@teste.com.br");
 		funcionario.setEmpresa(empresa);
